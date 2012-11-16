@@ -1,0 +1,229 @@
+{% extends "admin/admin.jinja2" %}
+{% block title %}{{ gettext('Edit page') }} - {% endblock %}
+
+{% block content %}
+<h1>{% trans %}Edit page{% endtrans %}</h1>
+
+<button onclick="remove_page()" class="btn red">Delete page</button>
+<form method="post" action="" class="forms columnar width-100">
+  <fieldset>
+    <ul>
+      <li>
+        <fieldset>
+          <section>
+          <label for="page_name" class="bold">{% trans %}Name{% endtrans %}</label>
+          </section>
+          {% if translated %}   
+            {{ translated.name }}<br />
+          {% endif %}
+          <input type="text" name="name" id="page_name" size="40" 
+              value="{{ page.name }}" />
+        </fieldset>
+      </li>
+      <li>
+        <fieldset>
+          <section>
+          <label class="bold">{% trans %}Content{% endtrans %}</label>
+          </section>
+          {% if translated %}
+          <table>
+            <tr>
+              <td style="width:66%">
+          {% endif %}
+                <textarea class="width-100" id="redactor_content"
+                  style="height: 100px;" name="content">
+                  {{ page.content }}
+                </textarea>
+          {% if translated %}
+              </td>
+              <td>
+                {{ translated.content | safe }}
+              </td>
+            </tr>
+          </table>
+          {% endif %}
+        </fieldset>
+      </li>
+      {% if translated %}
+      <li>
+        <fieldset>
+          <section>
+          <label class="bold">{% trans %}Language{% endtrans %}</label>
+          </section>
+          <select name="lang">
+            {% if page.language %}
+            <option value="{{ page.language }}" selected=true>
+              {{ page.language }}
+            </option>
+            {% endif %}
+            {% for lang in translate_lang %}
+            <option value="{{ lang }}">
+              {{ lang }}
+            </option>
+            {% endfor %}
+          </select>
+        </fieldset>
+      </li>
+      {% else %}
+      <input type="hidden" name="lang" value="{{ LOCALE }}">
+      {% endif %}
+      <li>
+        <fieldset>
+          <input id="mycheckbox1" type="checkbox" name="visible"
+          {% if page.visible or translated.visible %}checked{% endif %}/>
+          {% trans %}Page visible{% endtrans %}?
+        </fieldset>
+      </li>
+      <li>
+        <fieldset>
+          <section>
+          <label for="page_tags" class="bold">{% trans %}Tags{% endtrans %}</label>
+          </section>
+          <input type="text" name="tags" id="page_tags" size="40" 
+          value="{% for tag in page.tags %}{{ tag.name }}{% if not loop.last %},{% endif %}{% endfor%}" />
+        </fieldset>
+      </li>
+      <li>
+        <fieldset>
+          <input type="submit" name="form.submitted" class="btn"
+                 value="{{ gettext('Save') }}" />
+
+        </fieldset>
+      </li>
+    </ul>
+  </fieldset>
+  <input type="hidden" name="parent_id" value="{{ parent_id or 0 }}">
+  <input type="hidden" name="translated_page" value="{{ translated.id or 0 }}">
+</form>
+<table style="width:100%;">
+  <tr>
+    <td style="width:50%;">
+      {% if not translated %}
+      <h3>{% trans %}Child pages{% endtrans %}</h3>
+      <form action="{{ request.route_path('admin_object', object='page', action='add') }}">
+        <input type="submit" name="" class="btn" value="{{ gettext('Add page') }}"/>
+        <input type="hidden" name="parent_id" value="{{ page.id }}"/>
+      </form>
+      <ul id="tt" class="easyui-tree tree" data-options="animate:true,dnd:true"
+        url="{{ request.route_path('admin_object_target', object='page', action='get_tree', target=page.id) }}"
+        onmouseover="javascript:getJsonTree()"></ul>
+      <br/>
+      <form action="{{ request.route_path('admin_object_target', object='page', action='sort', target=page.id) }}"
+            method='post'>
+        <input type="hidden" name="page_list" value=""/>
+        <button class="btn">{% trans %}Sort{% endtrans %}</button>
+      </form>
+      <!-- the context menu is defined as below: -->
+      <div id="mm" class="easyui-menu" style="width:120px;">
+        <div onclick="edit()" data-options="iconCls:'icon-add'">Edit</div>
+        <div onclick="remove()" data-options="iconCls:'icon-remove'">Remove</div>
+      </div>
+      {% endif %}
+    </td>
+    <td>
+      <h3>{% trans %}Translations{% endtrans %}</h3>
+      {% if not translated %}
+      <form action="{{ request.route_path('admin_object', object='page', action='add') }}">
+        <input type="submit" class="btn" value="{{ gettext('Add translate') }}" />
+        <input type="hidden" class="btn" name="add_translate">
+        <input type="hidden" class="btn" name="translated_page" value="{{ page.id }}" />
+      </form>
+      {% endif %}
+      {% for trans in exist_translations %}
+      <a href="{{ request.route_path('admin_object', object='page', action='edit') }}/{{ trans.id }}">
+        <img src="/static/img/flags/{{ trans.language }}.png" alt="{{ lang }}" />
+        {{ trans.name }}
+        </a>
+        <br />
+      {% endfor %}
+    </td>
+  </tr>
+</table>
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" 
+      href="/static/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+      href="/static/easyui/themes/icon.css">
+
+<script type="text/javascript" 
+        src="/static/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" 
+        src="/static/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/static/js/json2.js"></script>
+<script type="text/javascript">
+  $(function(){  
+    // right click node and then display the context menu
+    $('#tt').tree({
+      onContextMenu: function(e, node){
+        e.preventDefault();
+        // select the node
+        $('#tt').tree('select', node.target);
+        // display context menu
+        $('#mm').menu('show', {
+          left: e.pageX,
+          top: e.pageY
+        });
+      }
+    });
+  });
+
+  function edit(){  
+      var node = $('#tt').tree('getSelected');  
+      document.location.href = "{{ request.route_path('admin_object', object='page', action='edit') }}/"+node.id;  
+  }  
+
+  function remove(){  
+      var node = $('#tt').tree('getSelected');  
+      var comm = confirm('{% trans %}Are you sure you want to delete?{% endtrans %}');
+      if (comm) {
+        document.location.href = "{{ request.route_path('admin_object', object='page', action='delete') }}/"+node.id;
+      }
+  }  
+
+  function getJsonTree(){
+    var roots = $('#tt').tree('getRoots');
+    var list = [];
+    for(var i=0; i<roots.length; i++){
+      var data = $('#tt').tree('getData', roots[i].target);
+      data = JSON.stringify(data);
+      list.push(data);
+    }
+    $('[name=page_list]').val(list);
+  }
+
+  function remove_page(){  
+      var comm = confirm('{% trans %}Are you sure you want to delete?{% endtrans %}');
+      if (comm) {
+        document.location.href = "{{ request.route_path('admin_object', object='page', action='delete') }}/"+{{ page.id }};
+      }
+  }  
+</script>
+
+<!-- Redactor is here -->
+<link rel="stylesheet" href="/static/redactor/redactor/redactor.css" />
+<script src="/static/redactor/redactor/redactor.js"></script>
+
+<script type="text/javascript">
+$(document).ready(
+  function()
+  {
+    $('#redactor_content').redactor({
+      imageUpload: 
+      '{{ request.route_path("admin_object", object="image", action="upload") }}',
+      imageGetJson:
+      '{{ request.route_path("admin_object", object="image", action="GetJson") }}',
+      mobile: true
+    });
+  }
+);
+</script>   
+
+<style type="text/css">
+    .important { color: #336699; }
+    .forms.columnar li fieldset {padding: 0 0 0 100px}
+    .forms.columnar li fieldset section {width:50px}
+</style>
+{% endblock %}

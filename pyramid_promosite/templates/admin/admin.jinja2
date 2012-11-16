@@ -1,0 +1,28 @@
+{% extends "base.jinja2" %}
+
+{% block sidebar %}
+  <aside class="quarter">
+  <div class="inner">
+    <h6>{% trans %}Action{% endtrans %}</h6>
+    <nav id="navside">
+      <ul>
+        <li><a href="{{ request.route_path('admin') }}">
+          {% trans %}Pages{% endtrans %}
+        </a></li>
+        <li><a 
+        href="{{ request.route_path('admin_object', object='image', action='view') }}">
+          {% trans %}Images{% endtrans %}
+        </a></li>
+        <li><a
+        href="{{ request.route_path('admin_object', object='page', action='settings') }}">
+        {% trans %}Settings{% endtrans %}
+        </a></li>
+        <li><a
+        href="{{ request.route_path('admin_object', object='user', action='view') }}">
+        {% trans %}Users{% endtrans %}
+        </a></li>
+      </ul>
+    </nav>
+  </div>
+  </aside>
+{% endblock %}

@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="document-state" content="Dynamic" />
+  <meta name="generator" content="pyramid_promosite">
+  <meta name="description" content="{{ settings['description'].value }}">
+  <meta name="keywords" content="{{ settings['keywords'].value }}">
+  <meta name="author" content="{{ settings['author'].value }}">
+  <meta name="copyright" content="{{ settings['copyright'].value }}">
+  
+  <link rel="stylesheet" type="text/css" href="/static/kube/css/kube.css" />
+  <link rel="stylesheet" type="text/css" href="/static/kube/css/master.css" />
+  <link rel="stylesheet" type="text/css" href="/static/easyui/demo/demo.css">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <style type="text/css">
+    .redactor_editor .content ul {
+      list-style-type: disc !important;
+      margin-bottom: 0em !important;
+    }
+  </style>
+
+  {% block head %}
+  {% endblock %}
+  <title>{% block title %}{% endblock %}{{ settings['sitename'].value }}</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header id="header" style="padding-bottom: 0; border: 0px;">
+        <table class="width-100">
+          <tr>
+            <td rowspan="2">
+              <h1>
+                <a href="{{ request.application_url }}"> {{ gettext('Logo') }}</a>
+              </h1>
+            </td>
+            <td class="width-100" style="border: 0px !important; color: white;">
+              <div style="float: right; background: #eee; padding: 4px;">
+                {% for lang in languages %}
+                <a href='/lang/{{ lang }}'>
+                  <img src="/static/img/flags/{{ lang }}.png" alt="{{ lang }}" /></a>
+                {% endfor %}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="border: 0px !important;">
+              <nav id="nav">
+                <ul>
+                  <li><a href="{{ request.application_url }}">
+                    {% trans %}Home{% endtrans %}</a></li>
+                    {% for node in partition %}
+                    <li><a 
+                href="{{ request.route_path('view_page', page_name=node.translite_name) }}">
+                            {{ node.name }}
+                          </a></li>
+                    {% endfor %}
+                    <li>
+                    {% if logged_in %}
+                      <a href="{{ request.route_path('admin') }}">
+                        {% trans %}Admin{% endtrans %}</a>
+                      <a href="{{ request.route_path('logout') }}">
+                        {% trans %}Logout{% endtrans %} ({{ logged_in }})</a>
+                    {% endif %}
+                  </li>
+                </ul>
+              </nav>
+            </td>
+          </tr>
+        </table>
+        </header>
+        <div id="main">
+          {% if breadcrumbs %}
+          <div class="row">
+           {% for crumb in breadcrumbs %}
+           {% if not loop.last %}
+           <a {% if crumb.visible %}href=
+             "{{ request.route_path('view_page', page_name=crumb.translite_name) }}"
+             {% endif %}>
+             {{ crumb.name }}</a>
+           &rarr; 
+           {% else %}{{ crumb.name }}{% endif %}
+           {% endfor %}
+          </div>
+          {% endif %}
+          <div class="row">
+              <article class="threequarter content">
+                  <div id="content">{% block content %}{% endblock %}</div>
+              </article>
+              {% block sidebar %}{% endblock %}
+          </div>
+        </div>
+
+        <ul id="blocks" class="block-three">
+            <li>
+            <div class="inner">1</div>
+            </li>
+            <li>
+            <div class="inner">2</div>
+
+            </li>
+            <li>
+            <div class="inner">3</div>
+            </li>
+        </ul>
+
+        {% block footer %}
+        <footer id="footer">{{ settings['signature'].value|safe }}</footer>
+        {% endblock %}
+    </div>
+</body>
+</html>

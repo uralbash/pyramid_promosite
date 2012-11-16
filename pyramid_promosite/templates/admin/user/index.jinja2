@@ -1,0 +1,30 @@
+{% extends "admin/admin.jinja2" %}
+{% block content %}
+<h1>{% trans %}Admin interface{% endtrans %}</h1>
+<h2>{% trans %}Users{% endtrans %}:</h2>
+<a href="{{ request.route_path('admin_object', object='user', action='add') }}">
+  <button class="btn">{% trans %}Add user{% endtrans %}</button>
+</a>
+<br /><br />
+<table id="page-table" class="bordered width-100">
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td class="width-100">
+        <a href="{{ request.route_path('admin_object', object='user', action='view') }}/{{ user.id }}">{{ user.login }}</a>
+      </td>
+      <td>
+        <a href="{{ request.route_path('admin_object_target', object='user', action='edit', target=user.id) }}">
+          <button class="btn">{% trans %}edit{% endtrans %}</button>
+        </a>
+        <a href="{{ request.route_path('admin_object_target', object='user', action='delete', target=user.id) }}" 
+          onclick="javascript:return confirm('{% trans %}Are you sure you want to delete?{% endtrans %}')">
+          <button class="btn red">{% trans %}delete{% endtrans %}</button>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

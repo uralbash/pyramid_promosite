@@ -1,0 +1,54 @@
+{% extends "admin/admin.jinja2" %}
+{% block content %}
+<h1>{% trans %}Admin interface{% endtrans %}</h1>
+<h2>{% trans %}Add User{% endtrans %}:</h2>
+<form method="post" action="" class="forms columnar width-100">
+  <fieldset>
+    <ul>
+      <li>
+        <fieldset>
+          <section>
+          <label for="user_login" class="bold">
+            {% trans %}Login name{% endtrans %}
+          </label>
+          </section>
+          
+          <input type="text" name="user_login" id="user_login" size="40" 
+              value="{{ user.login }}" />
+        </fieldset>
+      </li>
+      <li>
+        <fieldset>
+          <section>
+          <label for="user_password" class="bold">
+            {% trans %}Password{% endtrans %}
+          </label>
+          </section>
+          
+          <input type="password" name="user_password" id="user_password" size="40"/>
+        </fieldset>
+      </li>
+      <li>
+        <fieldset>
+          <section>
+          <label for="user_groups" class="bold">
+            {% trans %}Groups{% endtrans %}
+          </label>
+          </section>
+          
+          <input type="text" name="user_groups" id="user_groups" size="40" 
+              value="{{ user.groups or "" }}" />
+          <br>admin, moderator, editor
+        </fieldset>
+      </li>
+      <li>
+        <fieldset>
+            <input type="submit" name="form.submitted" class="btn"
+                 value="{{ gettext('Save') }}" />
+        </fieldset>
+      </li>
+    </ul>
+  </fieldset>
+</form>
+{% endblock %}
+

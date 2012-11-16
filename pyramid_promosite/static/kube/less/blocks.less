@@ -1,0 +1,27 @@
+/* =Blocks
+-----------------------------------------------------------------------------*/
+.block-two,
+.block-three,
+.block-four,
+.block-five,
+.block-six {
+	list-style: none;
+	margin-left: -@gridGutterWidth/(@gridWidth/100)*1%;
+	margin-bottom: 0;
+	.clearfixing;
+}
+.block-two > li,
+.block-three > li,
+.block-four > li,
+.block-five > li,
+.block-six > li { 
+	height: auto; 
+	float: left; 
+	margin-bottom: @baseLine/@em;
+	margin-left: @gridGutterWidth/(@gridWidth/100)*1%;	
+}
+.block-two > li   {	.block(2); }
+.block-three > li { .block(3); }
+.block-four > li  { .block(4); }
+.block-five > li  { .block(5); }
+.block-six > li   { .block(6); }

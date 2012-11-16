@@ -1,0 +1,25 @@
+{% extends "base.jinja2" %}
+{% block content %}
+  <div style="padding-left: 80px;">
+    <h1>{{ page.name }}</h1>
+    {{ page.content|safe }}
+  </div>
+{% endblock %}
+
+{% block sidebar %}
+{% if childs %}
+  <aside class="quarter">
+  <div class="inner">
+    <nav id="navside">
+      <ul>
+        {% for child in childs %}
+        <li><a
+          href="{{ request.route_path('view_page', page_name=child.translite_name) }}">
+          {{ child.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+  </aside>
+{% endif %}
+{% endblock %}

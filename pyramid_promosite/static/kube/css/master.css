@@ -1,0 +1,81 @@
+/* =Layout
+-----------------------------------------------------------------------------*/
+.wrapper {
+	margin: auto; 
+	max-width: 1000px;
+	padding: 36px 10px;
+	_width: 940px;		
+}
+#main aside {
+	background-color: #f6f6f6;
+}
+#blocks li {
+	background-color: #f8f8f8;
+	height: 100px;
+}
+
+/* =Header
+-----------------------------------------------------------------------------*/
+#header {
+	overflow: hidden;
+	padding-bottom: 1.5em;
+	margin-bottom: 1.5em;
+	border-bottom: 1px solid #eee;
+}
+#header h1 {
+	float: left;
+	margin: 0;	
+}
+
+/* =Nav
+-----------------------------------------------------------------------------*/
+#nav {
+	padding-top: 1.1em;
+	float: right;	
+}
+#nav ul, #navside ul {
+	margin: 0;
+	list-style: none;	
+}
+#nav ul li {
+	color: #999;
+	float: left;
+	margin-left: 1.5em;	
+}
+#navside ul li {
+	padding: 2px 0;
+}
+
+/* =Footer
+-----------------------------------------------------------------------------*/
+#footer {
+	border-top: 1px solid #eee;
+	padding-top: 1.5em;
+	margin: 1.5em 0;
+	font-size: .85em;
+}
+
+
+
+/* =Tablet (Portrait)
+-----------------------------------------------------------------------------*/
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .wrapper { width: 748px; }
+}
+
+
+/* =Mobile (Portrait)
+-----------------------------------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+	.wrapper { width: 300px; }
+	#nav, #header h1 { float: none; }
+	#header h1 { margin-bottom: .5em; }
+	#nav ul li { margin: 0; float: none; margin-bottom: 1px; background-color: #f6f6f6; }
+	#nav ul li a, #nav ul li span { display: block; padding: 2px 5px; }
+}
+
+/* =Mobile (Landscape)
+-----------------------------------------------------------------------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	.wrapper { width: 420px; }
+}

@@ -1,0 +1,79 @@
+{% extends "admin/admin.jinja2" %}
+{% block content %}
+<h1>{% trans %}Admin interface{% endtrans %}</h1>
+<h2>{% trans %}Settings{% endtrans %}:</h2>
+<form method="post" action="" class="forms columnar width-100">
+  <table id="page-table" class="bordered width-100">
+    <tbody>
+      <tr>
+        <td>{% trans %}Site name{% endtrans %}</td>
+        <td>
+          <input type="text" name="sitename" class="width-100" 
+                 value="{{ settings['sitename'].value }}" />
+        </td>
+      </tr>
+      <tr>
+        <td>{% trans %}Author{% endtrans %}</td>
+        <td>
+          <input type="text" name="author" class="width-100" 
+                 value="{{ settings['author'].value }}" />
+        </td>
+      </tr>
+      <tr>
+        <td>{% trans %}Copyright{% endtrans %}</td>
+        <td>
+          <input type="text" name="copyright" class="width-100" 
+                 value="{{ settings['copyright'].value }}" />
+        </td>
+      </tr>
+      <tr>
+        <td>{% trans %}Bottom signature{% endtrans %}</td>
+        <td>
+          <textarea name="signature" class="width-100" style="height:200px"
+            id="redactor_content">
+            {{ settings['signature'].value }}
+          </textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>{% trans %}Description{% endtrans %}</td>
+        <td>
+          <textarea name="description" class="width-100" style="height:200px">
+            {{ settings['description'].value }}
+          </textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>{% trans %}Keywords{% endtrans %}</td>
+        <td>
+          <textarea name="keywords" class="width-100" style="height:200px">
+            {{ settings['keywords'].value }}
+          </textarea>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="submit" name="form.submitted" class="btn"
+         value="{{ gettext('Save') }}" />
+</form>
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+
+  <script type="text/javascript" src="/static/redactor/lib/jquery-1.7.min.js"></script> 
+
+  <!-- Redactor is here -->
+  <link rel="stylesheet" href="/static/redactor/redactor/redactor.css" />
+  <script src="/static/redactor/redactor/redactor.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(
+    function()
+    {
+      $('#redactor_content').redactor({
+      });
+    }
+  );
+  </script> 
+{% endblock %}

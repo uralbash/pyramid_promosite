@@ -1,0 +1,116 @@
+# Translations template for pyramid_promosite.
+# Copyright (C) 2012 ORGANIZATION
+# This file is distributed under the same license as the pyramid_promosite
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pyramid_promosite 0.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2012-10-07 19:08+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: pyramid_promosite/templates/base.jinja2:22
+msgid "Logo"
+msgstr ""
+
+#: pyramid_promosite/templates/base.jinja2:26
+msgid "Home"
+msgstr ""
+
+#: pyramid_promosite/templates/base.jinja2:34
+msgid "Admin"
+msgstr ""
+
+#: pyramid_promosite/templates/base.jinja2:36
+msgid "Logout"
+msgstr ""
+
+#: pyramid_promosite/templates/login.jinja2:10
+msgid "Login"
+msgstr ""
+
+#: pyramid_promosite/templates/login.jinja2:16
+msgid "Log In"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/admin.jinja2:7
+msgid "Action"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/admin.jinja2:10
+#: pyramid_promosite/templates/admin/index.jinja2:4
+msgid "Pages"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/admin.jinja2:11
+#: pyramid_promosite/templates/admin/view_image.jinja2:4
+msgid "Images"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/admin.jinja2:12
+#: pyramid_promosite/templates/admin/settings.jinja2:4
+msgid "Settings"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/edit.jinja2:2
+#: pyramid_promosite/templates/admin/edit.jinja2:32
+msgid "Edit page"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/edit.jinja2:37
+msgid "Name"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/edit.jinja2:44
+msgid "Content"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/edit.jinja2:55
+msgid "Page visible"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/edit.jinja2:60
+#: pyramid_promosite/templates/admin/settings.jinja2:25
+msgid "Save"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/index.jinja2:3
+#: pyramid_promosite/templates/admin/settings.jinja2:3
+#: pyramid_promosite/templates/admin/view_image.jinja2:3
+msgid "Admin interface"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/index.jinja2:5
+msgid "Add page"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/index.jinja2:16
+msgid "Sort"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/index.jinja2:69
+#: pyramid_promosite/templates/admin/view_image.jinja2:14
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/settings.jinja2:9
+msgid "Site name"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/settings.jinja2:16
+msgid "Bottom signature"
+msgstr ""
+
+#: pyramid_promosite/templates/admin/view_image.jinja2:15
+msgid "delete"
+msgstr ""
+

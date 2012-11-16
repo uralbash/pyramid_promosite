@@ -1,0 +1,83 @@
+{% extends "admin/admin.jinja2" %}
+{% block content %}
+<h1>{% trans %}Admin interface{% endtrans %}</h1>
+<h2>{% trans %}Pages{% endtrans %}:</h2>
+<a class="btn"
+href="{{ request.route_path('admin_object', object='page', action='add') }}">
+  {% trans %}Add page{% endtrans %}
+</a>
+<br/><br/>
+<div class="demo-info" style="margin-bottom:10px">
+  <div class="demo-tip icon-tip">&nbsp;</div>
+  <div>Expand node to load its children nodes on demand.</div>
+  <div>Click right button for edit page.</div>
+</div>
+<ul id="tt" class="easyui-tree tree" data-options="animate:true,dnd:true"
+  url="{{ request.route_path('admin_object_target', object='page', action='get_tree', target=0) }}"
+  onmouseover="javascript:getJsonTree()"></ul>
+<br/>
+<form action="{{ request.route_path('admin_object_target', object='page', action='sort', target=0) }}"
+      method='post'>
+  <input type="hidden" name="page_list" value="">
+  <button class="btn">{% trans %}Sort{% endtrans %}</button>
+</form>
+<!-- the context menu is defined as below: -->
+<div id="mm" class="easyui-menu" style="width:120px;">
+  <div onclick="edit()" data-options="iconCls:'icon-add'">Edit</div>
+	<div onclick="remove()" data-options="iconCls:'icon-remove'">Remove</div>
+</div>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" 
+      href="/static/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+      href="/static/easyui/themes/icon.css">
+
+<script type="text/javascript" 
+        src="/static/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" 
+        src="/static/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/static/js/json2.js"></script>
+<script type="text/javascript">
+  $(function(){  
+    // right click node and then display the context menu
+    $('#tt').tree({
+      onContextMenu: function(e, node){
+        e.preventDefault();
+        // select the node
+        $('#tt').tree('select', node.target);
+        // display context menu
+        $('#mm').menu('show', {
+          left: e.pageX,
+          top: e.pageY
+        });
+      }
+    });
+  });
+
+  function edit(){  
+      var node = $('#tt').tree('getSelected');  
+      document.location.href = "{{ request.route_path('admin_object', object='page', action='edit') }}/"+node.id;  
+  }  
+
+  function remove(){  
+      var node = $('#tt').tree('getSelected');  
+      var comm = confirm('{% trans %}Are you sure you want to delete?{% endtrans %}');
+      if (comm) {
+        document.location.href = "{{ request.route_path('admin_object', object='page', action='delete') }}/"+node.id;
+      }
+  }  
+
+  function getJsonTree(){
+    var roots = $('#tt').tree('getRoots');
+    var list = [];
+    for(var i=0; i<roots.length; i++){
+      var data = $('#tt').tree('getData', roots[i].target);
+      data = JSON.stringify(data);
+      list.push(data);
+    }
+    $('[name=page_list]').val(list);
+  }
+</script>
+{% endblock %}
