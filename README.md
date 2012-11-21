@@ -75,6 +75,6 @@ Screenshots
 
 ![ScreenShot](https://raw.github.com/uralbash/pyramid_promosite/master/pyramid_promosite/static/img/img2.png)
 
-![ScreenShot](https://raw.github.com/uralbash/pyramid_promosite/master/pyramid_promosite/static/img/imgr3.png)
+![ScreenShot](https://raw.github.com/uralbash/pyramid_promosite/master/pyramid_promosite/static/img/img3.png)
 
-![ScreenShot](https://raw.github.com/uralbash/pyramid_promosite/master/pyramid_promosite/static/img/imgr4.png)
+![ScreenShot](https://raw.github.com/uralbash/pyramid_promosite/master/pyramid_promosite/static/img/img4.png)
