@@ -1,20 +1,19 @@
 pyramid_promosite README
 ========================
 
-pyramid_promosite - is not CMS, is a module that helps you quickly create a website. Pyramid_promosite is similar to django flatpages, but written in pyramid and more features.
+pyramid_promosite - is not CMS, this is a module that helps you quickly create a website. Pyramid_promosite is similar to django flatpages, but written in pyramid and more features.
 
 Getting Started
 ---------------
 
 - cd <directory containing this file>
 
-- $venv/bin/python setup.py develop
+- $venv/bin/python setup.py develop or pip install pyramid_promosite
 
 - $venv/bin/populate_pyramid_promosite development.ini
 
 - $venv/bin/pserve development.ini
 
-or pip install pyramid_promosite
 
 Features
 ________
@@ -25,7 +24,7 @@ ________
 - create translations of pages
 - create subpages
 - WYSIWYG editor with upload images
-- tags for page if you want to write blog
+- tags for page if you want to create blog
 - multilanguages support
 - template for mobile phone ready
 - flexibility
@@ -53,9 +52,9 @@ if you have the opportunity to help the project, I would be happy to finalize:
 - tests
 - docs for https://readthedocs.org
 - translate on other languges
-- security with crypt and group table
+- security with crypt(bcrypt or sha) and group table
 - scaffolds for pcreate
-- rewrite templates for true CSS, HTML
+- rewrite templates for true CSS, HTML design
 - anything from TODO
 - or anything else...
 

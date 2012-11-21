@@ -31,9 +31,9 @@ setup(name='pyramid_promosite',
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
-      author='',
-      author_email='',
-      url='',
+      author='Svintsov Dmitry',
+      author_email='spam@19216801.ru',
+      url='http://github.com/uralbash/pyramid_promosite',
       keywords='web wsgi bfg pylons pyramid',
       packages=find_packages(),
       include_package_data=True,
@@ -47,4 +47,3 @@ setup(name='pyramid_promosite',
       initialize_pyramid_promosite_db = pyramid_promosite.scripts.initializedb:main
       """,
       )
-

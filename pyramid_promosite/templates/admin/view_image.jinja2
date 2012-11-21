@@ -7,7 +7,7 @@
     {% for image in images %}
     <tr>
       <td class="width-100">
-        <img src="/static/uploaded/images/{{ image }}" class="width-33"/>
+        <img src="/{{ static_dir }}uploaded/images/{{ image }}" class="width-33"/>
       </td>
       <td>
         <a href="{{ request.route_path('admin_object_target', object='image', action='delete', target=image) }}" 

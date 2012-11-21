@@ -87,7 +87,7 @@ def view_image(request):
         file = file.replace(path, "")[1:]
         images.append(file)
 
-    return dict(images=images)
+    return dict(images=images, static_dir=get_static_dir(request))
 
 
 @view_config(route_name='admin_object_target',
