@@ -1,10 +1,10 @@
 pyramid_promosite README
-========================
+=
 
 pyramid_promosite - is not CMS, this is a module that helps you quickly create a website. Pyramid_promosite is similar to django flatpages, but written in pyramid and more features.
 
 Getting Started
----------------
+-
 
 - cd <directory containing this file>
 
@@ -16,7 +16,7 @@ Getting Started
 
 
 Features
-________
+-
 
 - admin page
 - admin, moderator, editor, author role
@@ -30,13 +30,13 @@ ________
 - flexibility
 
 Sites
-_____
+-
 
 - http://platonaps.ru (https://github.com/uralbash/platonaps.ru/)
 - your site there...
 
 TODO
-____
+-
 
 - RRS
 - logs of users activity
@@ -45,7 +45,7 @@ ____
 - REST
 
 Help
-____
+-
 
 if you have the opportunity to help the project, I would be happy to finalize:
 
@@ -59,7 +59,7 @@ if you have the opportunity to help the project, I would be happy to finalize:
 - or anything else...
 
 Permission
-----------
+-
 
 CRUD - create, read, update, delete
 
@@ -69,7 +69,7 @@ CRUD - create, read, update, delete
 - Authon can CRUD only own pages
 
 Screenshots
-___________
+-
 
 ![ScreenShot](https://raw.github.com/uralbash/pyramid_promosite/master/pyramid_promosite/static/img/img1.png)
 
