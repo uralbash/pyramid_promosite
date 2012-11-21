@@ -38,7 +38,7 @@ Sites
 TODO
 -
 
-- RRS
+- RSS
 - logs of users activity
 - versioning pages
 - autosave page
